@@ -88,7 +88,7 @@ const App = () => {
     limpar();
     setBtnCadastrar(true);
   };
-  
+
   // Função excluir todos os registros
   const excluirAll = (indice) => {
     person.splice(indice, person.length);
