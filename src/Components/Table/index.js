@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // Importando estilos da Tabela
 import { Container } from "./style";
 import { usePerson } from "../../Hooks/PersonContext";
-export const Table = ({ selecionar }) => {
+export const Table = ({ selecionar, excluirAll }) => {
   const [termo, setTermo] = useState("");
   const { person } = usePerson();
 
@@ -23,6 +23,9 @@ export const Table = ({ selecionar }) => {
           placeholder="Informe o nome..."
           className="form-control input"
         />
+        <button type="button" className="btn btn-outline-danger" onClick={excluirAll}>
+          Excluir todos
+        </button>
       </span>
 
       {/* Tabela  */}
@@ -42,8 +45,10 @@ export const Table = ({ selecionar }) => {
           </tr>
         </thead>
         <tbody>
-          {person
-            .filter((objPerson) => objPerson.name.includes(searchMaiusculas && searchMinusculas))
+          {   person && person
+            ?.filter((objPerson) =>
+              objPerson.name.includes(searchMaiusculas && searchMinusculas)
+            )
             .map((objPerson, indice) => (
               <tr key={indice}>
                 <th scope="row">{indice + 1}</th>
