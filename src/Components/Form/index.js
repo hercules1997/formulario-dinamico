@@ -29,20 +29,20 @@ export const Form = ({
 }) => {
   return (
     <FormStyle>
-
       {/* Divisor para distribuir os inputs */}
       <Divisor>
-      {/* Input de NOME */}
-      <span className="container-input">
-        <i class="bi bi-person"></i>
-        <input
-          className="form-control input"
-          type="text"
-          placeholder="Nome completo"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        />
-      </span>
+        {/* Input de NOME */}
+        <span className="container-input">
+          <i class="bi bi-person"></i>
+          <input
+            className="form-control input"
+            type="text"
+            placeholder="Nome completo"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            required
+          />
+        </span>
         {/* Input de IDADE */}
         <span className="container-input">
           <i class="bi bi-cake"></i>
@@ -52,6 +52,7 @@ export const Form = ({
             placeholder="Data de nacimento"
             onChange={(e) => setDate(e.target.value)}
             value={date}
+            required
           />
         </span>
         {/* Input de TELEFONE */}
@@ -63,6 +64,7 @@ export const Form = ({
             placeholder="Telefone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
+            required
           />
         </span>
       </Divisor>
@@ -76,6 +78,7 @@ export const Form = ({
           placeholder="Endereço"
           onChange={(e) => setAddress(e.target.value)}
           value={address}
+          required
         />
       </span>
       <Divisor>
@@ -88,6 +91,7 @@ export const Form = ({
             placeholder="n°"
             onChange={(e) => setNumero(e.target.value)}
             value={numero}
+            required
           />
         </span>
 
@@ -100,6 +104,7 @@ export const Form = ({
             placeholder="Cidade"
             onChange={(e) => setCidade(e.target.value)}
             value={cidade}
+            required
           />
         </span>
       </Divisor>
@@ -114,6 +119,7 @@ export const Form = ({
             placeholder="Estado"
             onChange={(e) => setEstado(e.target.value)}
             value={estado}
+            required
           />
         </span>
 
@@ -126,15 +132,28 @@ export const Form = ({
             placeholder="Gênero"
             onChange={(e) => setGenero(e.target.value)}
             value={genero}
+            required
           />
         </span>
       </Divisor>
 
       {btnCadastrar ? (
         <button
-          type="button"
+          type="submit"
           value="Cadastrar"
           class="btn btn-outline-primary"
+          disabled={
+            name === "" ||
+            date === "" ||
+            phone === "" ||
+            address === "" ||
+            numero === "" ||
+            cidade === "" ||
+            estado === "" ||
+            genero === ""
+              ? true
+              : false
+          }
           onClick={cadastrar}
         >
           Registrar
