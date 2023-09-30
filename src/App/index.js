@@ -80,13 +80,20 @@ const App = () => {
     limpar();
   };
 
-  //Função para excluir 
-  const excluir = async (indice) => {
-    person.splice(indice, 1)
+  //Função para excluir
+  const excluir = (indice) => {
+    person.splice(indice, 1);
 
     putPersonData(person);
     limpar();
     setBtnCadastrar(true);
+  };
+  
+  // Função excluir todos os registros
+  const excluirAll = (indice) => {
+    person.splice(indice, person.length);
+
+    putPersonData([...person]);
   };
 
   const cancelar = () => {
@@ -124,7 +131,7 @@ const App = () => {
         estado={estado}
         genero={genero}
       />
-      <Table selecionar={selecionar} />
+      <Table selecionar={selecionar} excluirAll={excluirAll} />
     </Container>
   );
 };
