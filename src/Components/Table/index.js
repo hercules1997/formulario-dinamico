@@ -10,10 +10,10 @@ export const Table = ({ selecionar, excluirAll }) => {
 
   // Variáveis para buscas dos nomes
   const searchMaiusculas = termo.toUpperCase();
-  const searchMinusculas = termo.toLocaleLowerCase()
+  const searchMinusculas = termo.toLocaleLowerCase();
 
   // Retorno
-  return (
+  return person.length > 0 ? (
     <Container>
       <span>
         <i class="bi bi-search"></i>
@@ -23,7 +23,11 @@ export const Table = ({ selecionar, excluirAll }) => {
           placeholder="Informe o nome..."
           className="form-control input"
         />
-        <button type="button" className="btn btn-outline-danger" onClick={excluirAll}>
+        <button
+          type="button"
+          className="btn btn-outline-danger"
+          onClick={excluirAll}
+        >
           Excluir todos
         </button>
       </span>
@@ -45,33 +49,36 @@ export const Table = ({ selecionar, excluirAll }) => {
           </tr>
         </thead>
         <tbody>
-          {   person && person
-            ?.filter((objPerson) =>
-              objPerson.name.includes(searchMaiusculas && searchMinusculas)
-            )
-            .map((objPerson, indice) => (
-              <tr key={indice}>
-                <th scope="row">{indice + 1}</th>
-                <td>{objPerson.name}</td>
-                <td>{objPerson.date}</td>
-                <td>{objPerson.phone}</td>
-                <td>{objPerson.address}</td>
-                <td>{objPerson.number}</td>
-                <td>{objPerson.cidade}</td>
-                <td>{objPerson.estado}</td>
-                <td>{objPerson.genero}</td>
-                <td>
-                  <button
-                    className="btn btn-outline-success"
-                    onClick={() => selecionar(indice)}
-                  >
-                    Selecionar
-                  </button>
-                </td>
-              </tr>
-            ))}
+          {person &&
+            person
+              ?.filter((objPerson) =>
+                objPerson.name.includes(searchMaiusculas && searchMinusculas)
+              )
+              .map((objPerson, indice) => (
+                <tr key={indice}>
+                  <th scope="row">{indice + 1}</th>
+                  <td>{objPerson.name}</td>
+                  <td>{objPerson.date}</td>
+                  <td>{objPerson.phone}</td>
+                  <td>{objPerson.address}</td>
+                  <td>{objPerson.number}</td>
+                  <td>{objPerson.cidade}</td>
+                  <td>{objPerson.estado}</td>
+                  <td>{objPerson.genero}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-success"
+                      onClick={() => selecionar(indice)}
+                    >
+                      Selecionar
+                    </button>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
     </Container>
+  ) : (
+    <></>
   );
 };
