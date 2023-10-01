@@ -29,6 +29,9 @@ export const Form = ({
 }) => {
   return (
     <FormStyle>
+      <h2>
+        <i class="bi bi-list"></i> Formulário Diinâmico
+      </h2>
       {/* Divisor para distribuir os inputs */}
       <Divisor>
         {/* Input de NOME */}
@@ -48,7 +51,7 @@ export const Form = ({
           <i class="bi bi-cake"></i>
           <input
             className="form-control input"
-            type="text"
+            type="date"
             placeholder="Data de nacimento"
             onChange={(e) => setDate(e.target.value)}
             value={date}
@@ -60,7 +63,7 @@ export const Form = ({
           <i class="bi bi-phone"></i>
           <input
             className="form-control input"
-            type="text"
+            type="number" min={0} 
             placeholder="Telefone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
@@ -87,7 +90,7 @@ export const Form = ({
           <i class="bi bi-123"></i>
           <input
             className="form-control input"
-            type="text"
+            type="number" min={0}
             placeholder="n°"
             onChange={(e) => setNumero(e.target.value)}
             value={numero}
